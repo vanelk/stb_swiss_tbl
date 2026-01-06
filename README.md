@@ -8,26 +8,29 @@ A simple swiss table implementation based on google's fast swiss table from this
 ## Usage
 
 ```c
+#include <stdio.h>
 #define ST_IMPLEMENTATION
 #include "stb_swiss_tbl.h"
 
-// Now use it:
-st_map* map = st_new();
-st_str key = {(uint8_t*)"hello", 5};
-map = st_insert(map, &key, 42);
-
-// Finding element
-int64_t out;
-if (st_find(&key, &out)) {
-    printf("Found hello = %ld", out);
+int main() {
+    // Now use it:
+    swiss_tbl* map = st_new();
+    st_str key = {(char*)"hello", 5};
+    map = st_insert(map, &key, 42);
+    
+    // Finding element
+    int64_t out;
+    if (st_find(map, &key, &out)) {
+        printf("Found %s = %ld", key.data, out);
+    }
 }
 ```
 ### Options:
 - **ST_MALLOC**: Malloc function for allocation (default is stdlib `malloc`)
-- **ST_FREE**: Free function for allocation (default is stdlib `free`)
-- **ST_MEMCMP**: Memcmp function for allocation (default is string.h `memcmp`)
-- **ST_PROBE_FUNC**: Function to use for probing takes in the (`group`, `number_of_groups`) (default is linear probe)
-- **ST_HASH_FUNC**: Hashing function (default is `rapidhash`)
+- **ST_FREE**: Function for freeing allocation above (default is stdlib `free`)
+- **ST_MEMCMP**: Memcmp function (default is string.h `memcmp`)
+- **ST_PROBE_FUNC**: Function to use for probing (default is linear probe); Signature is `size_t (size_t group, size_t number_of_groups)` 
+- **ST_HASH_FUNC**: Hashing function (default is `stb_hash_bytes`); Signature is `size_t (char* key_bytes, size_t key_size)`
 
 ## Dependencies:
 - [**stb_ds**](https://github.com/nothings/stb/blob/master/stb_ds.h): Array implementation for buckets/slots.

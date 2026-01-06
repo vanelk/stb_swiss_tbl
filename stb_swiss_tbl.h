@@ -7,7 +7,7 @@
 extern "C" {
 #endif
 typedef struct st_str {
-    uint8_t* data;
+    char* data;
     size_t len;
 } st_str;
 
@@ -41,11 +41,11 @@ void st_free(swiss_tbl* self);
 #include <stdlib.h>
 #include <immintrin.h>
 
+#define STB_DS_IMPLEMENTATION
 #include "stb_ds.h"
 
-#ifndef ST_HASH_FUNC 
-#include "rapidhash.h"
-#define ST_HASH_FUNC rapidhash
+#ifndef ST_HASH_FUNC
+#define ST_HASH_FUNC(key, keysize) stbds_hash_bytes(key, keysize, 0x2d358dccaa6c78a5ull)
 #endif
 
 #ifndef ST_PROBE_FUNC
