@@ -26,15 +26,14 @@ int main() {
 }
 ```
 ### Options:
-- **ST_MALLOC**: Malloc function for allocation (default is stdlib `malloc`)
-- **ST_FREE**: Function for freeing allocation above (default is stdlib `free`)
+- **ST_MALLOC**: Malloc function for allocation (default is stdlib.h `malloc`)
+- **ST_FREE**: Function for freeing allocation above (default is stdlib.h `free`)
 - **ST_MEMCMP**: Memcmp function (default is string.h `memcmp`)
 - **ST_PROBE_FUNC**: Function to use for probing (default is linear probe); Signature is `size_t (size_t group, size_t number_of_groups)` 
-- **ST_HASH_FUNC**: Hashing function (default is `stb_hash_bytes`); Signature is `size_t (char* key_bytes, size_t key_size)`
+- **ST_HASH_FUNC**: Hashing function (default is `stb_hash_bytes`; would suggest [**rapidhash**](https://github.com/Nicoshev/rapidhash/blob/master/rapidhash.h) for better performance); Signature is `size_t (char* key_bytes, size_t key_size)`
 
 ## Dependencies:
-- [**stb_ds**](https://github.com/nothings/stb/blob/master/stb_ds.h): Array implementation for buckets/slots.
-- [**rapidhash**](https://github.com/Nicoshev/rapidhash/blob/master/rapidhash.h): Default hash implementation.
+- [**stb_ds**](https://github.com/nothings/stb/blob/master/stb_ds.h): Array implementation for buckets/slots and default hash function.
 ## Important
 -  This implementation might have some functionalities missing that are present in abseil above.
 
