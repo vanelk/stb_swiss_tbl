@@ -41,7 +41,9 @@ void st_free(swiss_tbl* self);
 #include <stdlib.h>
 #include <immintrin.h>
 
+#ifndef ST_NO_DEF_STB_DS_IMPLEMENTATION
 #define STB_DS_IMPLEMENTATION
+#endif
 #include "stb_ds.h"
 
 #ifndef ST_HASH_FUNC

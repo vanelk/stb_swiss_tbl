@@ -31,7 +31,7 @@ int main() {
 - **ST_MEMCMP**: Memcmp function (default is string.h `memcmp`)
 - **ST_PROBE_FUNC**: Function to use for probing (default is linear probe); Signature is `size_t (size_t group, size_t number_of_groups)` 
 - **ST_HASH_FUNC**: Hashing function (default is `stb_hash_bytes`; would suggest [**rapidhash**](https://github.com/Nicoshev/rapidhash/blob/master/rapidhash.h) for better performance); Signature is `size_t (char* key_bytes, size_t key_size)`
-
+- **ST_NO_DEF_STB_DS_IMPLEMENTATION**: Whether to not define **STB_DS_IMPLEMENTATION** with the **ST_IMPLEMENTATION** block (help for implementation collision).
 ## Dependencies:
 - [**stb_ds**](https://github.com/nothings/stb/blob/master/stb_ds.h): Array implementation for buckets/slots and default hash function.
 ## Important
