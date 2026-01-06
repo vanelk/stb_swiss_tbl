@@ -33,5 +33,5 @@ if (st_find(&key, &out)) {
 - [**stb_ds**](https://github.com/nothings/stb/blob/master/stb_ds.h): Array implementation for buckets/slots.
 - [**rapidhash**](https://github.com/Nicoshev/rapidhash/blob/master/rapidhash.h): Default hash implementation.
 ## Important
--  This implementation might have some functionalities missing that are present ins abseil above.
+-  This implementation might have some functionalities missing that are present in abseil above.
 
