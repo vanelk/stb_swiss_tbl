@@ -1,6 +1,7 @@
 #ifndef ST_INCLUDE_SWISSTABLE_H
 #define ST_INCLUDE_SWISSTABLE_H
 
+#include <stddef.h>
 #include <stdint.h>
 #include <stdbool.h>
 #ifdef __cplusplus
