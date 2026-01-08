@@ -68,7 +68,7 @@ void st_free(swiss_tbl* self);
 #define ST_MEMCMP(a,b,sz) memcmp(a,b,sz)
 #endif
 
-enum Ctrl: uint8_t {
+enum Ctrl {
 	ST_EMPTY    = 0b10000000, // -128 in two's complement
 	ST_DELETED  = 0b11111110, // -2 in two's complement
 	ST_SENTINAL = 0b11111111 // -1  in two's complement
