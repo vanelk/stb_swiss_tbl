@@ -43,10 +43,10 @@ void st_free(swiss_tbl* self);
 #include <immintrin.h>
 
 #ifndef ST_REALLOC
-#define ST_REALLOC realloc
+#define ST_REALLOC(c,p,s) realloc(p,s)
 #endif
 #ifndef ST_FREE
-#define ST_FREE(p) free(p)
+#define ST_FREE(c,p) free(p)
 #endif
 
 
@@ -54,8 +54,8 @@ void st_free(swiss_tbl* self);
 #define STB_DS_IMPLEMENTATION
 #endif
 
-#define STB_REALLOC ST_REALLOC
-#define STB_FREE ST_FREE
+#define STBDS_REALLOC ST_REALLOC
+#define STBDS_FREE ST_FREE
 #include "stb_ds.h"
 
 #ifndef ST_HASH_FUNC
@@ -104,7 +104,7 @@ int st_match_byte(uint8_t* ctrl_group, uint8_t h2_val) {
 
 swiss_tbl* st_resize(swiss_tbl* self) {
 	if (self == NULL) {
-		self = ST_REALLOC(self, sizeof(swiss_tbl));
+		self = ST_REALLOC(NULL, self, sizeof(swiss_tbl));
 		self->capacity = 0;
 		self->size = 0;
 		self->entries = NULL;
@@ -269,6 +269,6 @@ void st_free(swiss_tbl* self) {
 	if (self == NULL) return;
 	arrfree(self->ctrl);
 	arrfree(self->entries);
-	ST_FREE(self);
+	ST_FREE(NULL, self);
 }
 #endif

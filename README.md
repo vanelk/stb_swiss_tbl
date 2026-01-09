@@ -29,8 +29,8 @@ int main() {
 }
 ```
 ### Options:
-- **ST_REALLOC**: Realloc function for allocation (default is stdlib.h `realloc`)
-- **ST_FREE**: Function for freeing allocation above (default is stdlib.h `free`)
+- **ST_REALLOC**: Realloc function for allocation (default is stdlib.h `realloc`); Signature is `void* (void* context, void* ptr, size_t size)`
+- **ST_FREE**: Function for freeing allocation above (default is stdlib.h `free`); Signature is `void (void* context, void* ptr)`
 - **ST_MEMCMP**: Memcmp function (default is string.h `memcmp`)
 - **ST_PROBE_FUNC**: Function to use for probing (default is linear probe); Signature is `size_t (size_t group, size_t number_of_groups)` 
 - **ST_HASH_FUNC**: Hashing function (default is `stb_hash_bytes`; would suggest [**rapidhash**](https://github.com/Nicoshev/rapidhash/blob/master/rapidhash.h) for better performance); Signature is `size_t (char* key_bytes, size_t key_size)`
