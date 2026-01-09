@@ -21,12 +21,15 @@ int main() {
     // Finding element
     int64_t out;
     if (st_find(map, &key, &out)) {
-        printf("Found %s = %ld", key.data, out);
+        printf("Found %s = %ld\n", key.data, out);
     }
+
+    // free map
+    st_free(map);
 }
 ```
 ### Options:
-- **ST_MALLOC**: Malloc function for allocation (default is stdlib.h `malloc`)
+- **ST_REALLOC**: Realloc function for allocation (default is stdlib.h `realloc`)
 - **ST_FREE**: Function for freeing allocation above (default is stdlib.h `free`)
 - **ST_MEMCMP**: Memcmp function (default is string.h `memcmp`)
 - **ST_PROBE_FUNC**: Function to use for probing (default is linear probe); Signature is `size_t (size_t group, size_t number_of_groups)` 

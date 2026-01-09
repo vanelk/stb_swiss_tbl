@@ -42,9 +42,20 @@ void st_free(swiss_tbl* self);
 #include <stdlib.h>
 #include <immintrin.h>
 
+#ifndef ST_REALLOC
+#define ST_REALLOC realloc
+#endif
+#ifndef ST_FREE
+#define ST_FREE(p) free(p)
+#endif
+
+
 #ifndef ST_NO_DEF_STB_DS_IMPLEMENTATION
 #define STB_DS_IMPLEMENTATION
 #endif
+
+#define STB_REALLOC ST_REALLOC
+#define STB_FREE ST_FREE
 #include "stb_ds.h"
 
 #ifndef ST_HASH_FUNC
@@ -55,19 +66,11 @@ void st_free(swiss_tbl* self);
 #define ST_PROBE_FUNC st_linear_probe
 #endif
 
-#ifndef ST_MALLOC
-#define ST_MALLOC(sz) malloc(sz)
-#endif
-
-#ifndef ST_FREE
-#define ST_FREE(p) free(p)
-#endif
 
 #ifndef ST_MEMCMP
 #include <string.h>
 #define ST_MEMCMP(a,b,sz) memcmp(a,b,sz)
 #endif
-
 enum Ctrl {
 	ST_EMPTY    = 0b10000000, // -128 in two's complement
 	ST_DELETED  = 0b11111110, // -2 in two's complement
@@ -101,7 +104,7 @@ int st_match_byte(uint8_t* ctrl_group, uint8_t h2_val) {
 
 swiss_tbl* st_resize(swiss_tbl* self) {
 	if (self == NULL) {
-		self = ST_MALLOC(sizeof(swiss_tbl));
+		self = ST_REALLOC(self, sizeof(swiss_tbl));
 		self->capacity = 0;
 		self->size = 0;
 		self->entries = NULL;
